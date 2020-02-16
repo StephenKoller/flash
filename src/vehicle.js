@@ -1,7 +1,10 @@
 const uuid = require('uuid')
+const ClaimsHistory = require('./claims-history')
+
+const vehicleID = uuid.v4()
 
 const vehicle = {
-  id: uuid.v4(),
+  id: vehicleID,
   createdDate: new Date(),
   modifiedDate: new Date(),
   make: 'Toyota',
@@ -11,7 +14,8 @@ const vehicle = {
   purchaseValue: 3000000,
   vin: '',
   licensePlateState: 'MI',
-  licensePlateNumber: 'FL337'
+  licensePlateNumber: 'FL337',
+  claims: new ClaimsHistory(vehicleID),
 }
 
 module.exports = vehicle
