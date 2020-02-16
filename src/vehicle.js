@@ -1,5 +1,7 @@
+const uuid = require('uuid')
+
 const vehicle = {
-  id: 0,
+  id: uuid.v4(),
   createdDate: new Date(),
   modifiedDate: new Date(),
   make: 'Toyota',
