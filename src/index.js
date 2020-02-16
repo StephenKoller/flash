@@ -1,3 +1,5 @@
+const FileIO = require('./file-io')
 const vehicle = require('./vehicle')
 
-console.log(vehicle);
+FileIO.writeJson('./data/vehicles.json', vehicle)
+console.log(FileIO.readJson('./data/vehicles.json'))
