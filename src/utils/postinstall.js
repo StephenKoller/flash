@@ -1,12 +1,12 @@
 const { generateVehicle, vehicles } = require('../models/vehicle')
-const FileIO = require('./file-io')
+const FileIO = require('../utils/file-io')
 
 const postInstall = () => {
   try {
     for (let index = 0; index < 10; index++) {
       generateVehicle()
     }
-    FileIO.writeJson('./data/vehicles.json', vehicles)
+    FileIO.writeJson('../data/vehicles.json', vehicles)
   } catch (error) {
     console.error(error)
     throw new Error(error)
