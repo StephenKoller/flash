@@ -31,6 +31,14 @@ const getVehicleCountByPurchaseYear = vehicles => {
 }
 
 const getTotalPurchasePrice = vehicles => {
+  if (!vehicles || !keys(vehicles).length) return null
+
+  const hasPurchaseValue = keys(vehicles)
+    .map(i => vehicles[i])
+    .every(v => v.hasOwnProperty('purchaseValue'))
+
+  if (!hasPurchaseValue) return null
+
   return keys(vehicles)
     .map(i => vehicles[i])
     .map(v => v.purchaseValue)

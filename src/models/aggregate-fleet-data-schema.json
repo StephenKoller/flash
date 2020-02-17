@@ -5,7 +5,7 @@
     "vehicleCount": { "type": "integer" },
     "vehicleCountByModelYear": { "type": "object" },
     "vehicleCountByPurchaseYear": { "type": "object" },
-    "totalPurchasePrice": { "type": "integer" }
+    "totalPurchasePrice": { "type": ["integer", "null"] }
   },
   "required": [
     "vehicleCount",

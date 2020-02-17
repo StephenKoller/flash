@@ -88,6 +88,20 @@ describe('getVehicleCountByPurchaseYear', () => {
 })
 
 describe('getTotalPurchasePrice', () => {
+  test('should handle empty input', () => {
+    expect(getTotalPurchasePrice()).toBe(null)
+    expect(getTotalPurchasePrice({})).toBe(null)
+    expect(getTotalPurchasePrice(null)).toBe(null)
+  })
+
+  test('should return null if a vehicle has no purchaseValue', () => {
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: {},
+      '03D84BKR262PCBP77': { purchaseValue: 0 },
+    }
+    expect(getTotalPurchasePrice(vehicles)).toBe(null)
+  })
+
   test('should handle total purchase price', () => {
     const vehicles = {
       CN3YN2XNMNTALPSUB: { purchaseValue: 1234567 },
