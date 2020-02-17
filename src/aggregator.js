@@ -3,13 +3,12 @@ const keys = require('object-keys')
 
 class Aggregator {
   static getVehicleCount(vehicles) {
-    this.vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
-    return this.vehicleCount || 0
+    const vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
+    return vehicleCount || 0
   }
 
   static getVehicleCountByModelYear(vehicles) {
-    this.vehicleCountByModelYear = countBy(vehicles, 'modelYear')
-    return this.vehicleCountByModelYear
+    return countBy(vehicles, 'modelYear')
   }
 
   static getVehicleCountByPurchaseYear(vehicles) {
@@ -17,32 +16,27 @@ class Aggregator {
       purchaseYear: new Date(v.purchaseDate).getFullYear(),
     }))
 
-    this.vehicleCountByPurchaseYear = countBy(
-      vehiclePurchaseYears,
-      'purchaseYear',
-    )
-    return this.vehicleCountByPurchaseYear
+    return countBy(vehiclePurchaseYears, 'purchaseYear')
   }
 
   static getTotalPurchasePrice(vehicles) {
-    this.totalPurchasePrice = keys(vehicles)
+    return keys(vehicles)
       .map(i => vehicles[i])
       .map(v => v.purchaseValue)
       .reduce((acc, cur) => acc + cur)
-
-    return this.totalPurchasePrice
   }
 
+  /* Requirement #3:
+   * Write a method that
+   *  - Takes a list of car data structures
+   *  - Returns an aggregated data structure
+   */
   static getAggregateData(vehicles) {
-    this.getVehicleCount(vehicles)
-    this.getVehicleCountByModelYear(vehicles)
-    this.getVehicleCountByPurchaseYear(vehicles)
-    this.getTotalPurchasePrice(vehicles)
     return {
-      vehicleCount: this.vehicleCount,
-      vehicleCountByModelYear: this.vehicleCountByModelYear,
-      vehicleCountByPurchaseYear: this.vehicleCountByPurchaseYear,
-      totalPurchasePrice: this.totalPurchasePrice,
+      vehicleCount: getVehicleCount(vehicles),
+      vehicleCountByModelYear: getVehicleCountByModelYear(vehicles),
+      vehicleCountByPurchaseYear: getVehicleCountByPurchaseYear(vehicles),
+      totalPurchasePrice: getTotalPurchasePrice(vehicles),
     }
   }
 }
