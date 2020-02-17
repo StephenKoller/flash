@@ -5,9 +5,25 @@ const sample = require('lodash/sample')
 const getMakeAndModel = require('./brands-with-models')
 const STATES = require('./states')
 
+const vehicles = {}
+
+/* Design a data structure for a single car that
+ *   - Has a unique id
+ *   - Contains the properties
+ *   - Year, make, model, purchase value, VIN, license plate state, and number
+ *   - Contains the claim history
+ *   - Claim history details varies by company [arbitrary objects]
+ *   - Claim history details are always the same for a given company
+ *
+ * See ./vehicleSchema.json for the JSONSchema representation
+ */
+
 const generateVehicle = () => {
   const id = uuid.v4()
   const vin = randexp('([A-HJ-NPR-Z0-9]{17})')
+
+  // storing the vehicles in an object using the VIN as a key allows
+  // for rapid lookup because non-scalar objects behave as associative arrays
   vehicles[vin] = {
     id,
     createdDate: new Date(),
@@ -23,8 +39,7 @@ const generateVehicle = () => {
     licensePlateState: sample(STATES),
     claims: new ClaimsHistory(id).claims,
   }
+  return vehicles[vin]
 }
-
-const vehicles = {}
 
 module.exports = { generateVehicle, vehicles }
