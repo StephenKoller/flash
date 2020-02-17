@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 
-class FileIO {
-  static writeJson(filePath, inputData) {
+const FileIO = {
+  writeJson(filePath, inputData) {
     const jsonString = JSON.stringify(inputData, null, 2)
     fs.writeFile(path.join(__dirname, filePath), jsonString, err => {
       console.log(jsonString)
@@ -12,9 +12,9 @@ class FileIO {
         console.log('Successfully wrote file')
       }
     })
-  }
+  },
 
-  static readJson(filePath, callback) {
+  readJson(filePath, callback) {
     fs.readFile(path.join(__dirname, filePath), (err, fileData) => {
       if (err) {
         return callback && callback(err)
@@ -26,7 +26,7 @@ class FileIO {
         return callback && callback(err)
       }
     })
-  }
+  },
 }
 
 module.exports = FileIO
