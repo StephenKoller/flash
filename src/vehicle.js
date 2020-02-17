@@ -2,7 +2,7 @@ const uuid = require('uuid')
 const ClaimsHistory = require('./claims-history')
 const randexp = require('randexp').randexp
 const sample = require('lodash/sample')
-const getMakeAndModel = require('./brandsWithModels')
+const getMakeAndModel = require('./brands-with-models')
 const STATES = require('./states')
 
 const generateVehicle = () => {
