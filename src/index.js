@@ -1,7 +1,8 @@
-// const vehicles = require('./vehicle')
-// const FileIO = require('./file-io')
+const FileIO = require('./file-io')
 const Aggregator = require('./aggregator')
 
 // FileIO.writeJson('./data/vehicles.json', vehicles)
 
-Aggregator.getTotalPurchasePrice()
+FileIO.readJson('./data/vehicles.json', results => {
+  console.log(Aggregator.getAggregateData(results[0]))
+})

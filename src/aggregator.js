@@ -1,53 +1,49 @@
-const FileIO = require('./file-io')
 const countBy = require('lodash/countBy')
 const keys = require('object-keys')
 
 class Aggregator {
-  static getVehicleCount() {
-    FileIO.readJson('./data/vehicles.json', results => {
-      const vehicles = results[0]
-      this.vehicleCount = keys(vehicles).length
-      console.log(this.vehicleCount)
-      return this.vehicleCount
-    })
+  static getVehicleCount(vehicles) {
+    this.vehicleCount = keys(vehicles).length
+    return this.vehicleCount
   }
 
-  static getVehicleCountByModelYear() {
-    FileIO.readJson('./data/vehicles.json', results => {
-      const vehicles = results[0]
-      this.vehicleCountByModelYear = countBy(vehicles, 'modelYear')
-      console.log(this.vehicleCountByModelYear)
-      return this.vehicleCountByModelYear
-    })
+  static getVehicleCountByModelYear(vehicles) {
+    this.vehicleCountByModelYear = countBy(vehicles, 'modelYear')
+    return this.vehicleCountByModelYear
   }
 
-  static getVehicleCountByPurchaseYear() {
-    FileIO.readJson('./data/vehicles.json', results => {
-      const vehicles = results[0]
-      const vehiclePurchaseYears = Object.values(vehicles).map(v => ({
-        purchaseYear: new Date(v.purchaseDate).getFullYear(),
-      }))
+  static getVehicleCountByPurchaseYear(vehicles) {
+    const vehiclePurchaseYears = Object.values(vehicles).map(v => ({
+      purchaseYear: new Date(v.purchaseDate).getFullYear(),
+    }))
 
-      this.vehicleCountByPurchaseYear = countBy(
-        vehiclePurchaseYears,
-        'purchaseYear',
-      )
-      console.log(this.vehicleCountByPurchaseYear)
-      return this.vehicleCountByPurchaseYear
-    })
+    this.vehicleCountByPurchaseYear = countBy(
+      vehiclePurchaseYears,
+      'purchaseYear',
+    )
+    return this.vehicleCountByPurchaseYear
   }
 
-  static getTotalPurchasePrice() {
-    FileIO.readJson('./data/vehicles.json', results => {
-      const vehicles = results[0]
-      this.totalPurchasePrice = keys(vehicles)
-        .map(i => vehicles[i])
-        .map(v => v.purchaseValue)
-        .reduce((acc, cur) => acc + cur)
+  static getTotalPurchasePrice(vehicles) {
+    this.totalPurchasePrice = keys(vehicles)
+      .map(i => vehicles[i])
+      .map(v => v.purchaseValue)
+      .reduce((acc, cur) => acc + cur)
 
-      console.log(this.totalPurchasePrice)
-      return this.totalPurchasePrice
-    })
+    return this.totalPurchasePrice
+  }
+
+  static getAggregateData(vehicles) {
+    this.getVehicleCount(vehicles)
+    this.getVehicleCountByModelYear(vehicles)
+    this.getVehicleCountByPurchaseYear(vehicles)
+    this.getTotalPurchasePrice(vehicles)
+    return {
+      vehicleCount: this.vehicleCount,
+      vehicleCountByModelYear: this.vehicleCountByModelYear,
+      vehicleCountByPurchaseYear: this.vehicleCountByPurchaseYear,
+      totalPurchasePrice: this.totalPurchasePrice,
+    }
   }
 }
 
