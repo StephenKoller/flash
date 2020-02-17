@@ -15,7 +15,7 @@ const generateVehicle = () => {
     purchaseDate: new Date(
       randexp('(1[0-2]|[1-9])-(3[01]|[12][0-9]|[1-9])-(199|200|201)[0-9]{1}'),
     ),
-    purchaseValue: randexp('[0-9]{7}'),
+    purchaseValue: parseInt(randexp('[0-9]{7}'), 10),
     modelYear: parseInt(randexp('(199|200|201)[0-9]{1}')),
     vin: randexp('([A-HJ-NPR-Z0-9]{17})'),
     licensePlateNumber: randexp('[A-HJ-NPR-Z0-9]{7}'),
