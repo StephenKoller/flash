@@ -5,7 +5,6 @@ const FileIO = {
   writeJson(filePath, inputData) {
     const jsonString = JSON.stringify(inputData, null, 2)
     fs.writeFile(path.join(__dirname, filePath), jsonString, err => {
-      console.log(jsonString)
       if (err) {
         console.log('Error writing file', err)
       } else {
