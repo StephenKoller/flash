@@ -5,22 +5,22 @@ const keys = require('object-keys')
  * - Total count
  * - Count by year (note: unclear whether model year, purchase year, or year in service)
  * - Total purchase price
+ *
+ * see aggregate-fleet-data-schema.json for shape
  */
-const aggregateFleetData = {
-  vehicleCount: 0,
-  vehicleCountByModelYear: {},
-  vehicleCountByPurchaseYear: {},
-  totalPurchasePrice: 0,
-}
+// aggregateFleetData = {
+//   vehicleCount: 0,
+//   vehicleCountByModelYear: {},
+//   vehicleCountByPurchaseYear: {},
+//   totalPurchasePrice: 0,
+// }
 
 const getVehicleCount = vehicles => {
   const vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
   return vehicleCount || 0
 }
 
-const getVehicleCountByModelYear = vehicles => {
-  return countBy(vehicles, 'modelYear')
-}
+const getVehicleCountByModelYear = vehicles => countBy(vehicles, 'modelYear')
 
 const getVehicleCountByPurchaseYear = vehicles => {
   const vehiclePurchaseYears = Object.values(vehicles).map(v => ({
@@ -42,7 +42,7 @@ const getTotalPurchasePrice = vehicles => {
  *  - Takes a list of car data structures
  *  - Returns an aggregated data structure
  */
-const getAggregateFleetData = () => ({
+const getAggregateFleetData = vehicles => ({
   vehicleCount: getVehicleCount(vehicles),
   vehicleCountByModelYear: getVehicleCountByModelYear(vehicles),
   vehicleCountByPurchaseYear: getVehicleCountByPurchaseYear(vehicles),
@@ -50,7 +50,6 @@ const getAggregateFleetData = () => ({
 })
 
 module.exports = {
-  aggregateFleetData,
   getAggregateFleetData,
   getVehicleCount,
   getVehicleCountByModelYear,

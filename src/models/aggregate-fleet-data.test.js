@@ -1,20 +1,12 @@
 const {
-  aggregateFleetData,
   getVehicleCount,
   getVehicleCountByModelYear,
   getVehicleCountByPurchaseYear,
   getTotalPurchasePrice,
+  getAggregateFleetData,
 } = require('./aggregate-fleet-data')
 const aggregateFleetDataSchema = require('./aggregate-fleet-data-schema')
 var validate = require('jsonschema').validate
-
-describe('aggregate fleet data', () => {
-  test('should conform to JSONSchema', () => {
-    expect(
-      validate(aggregateFleetData, aggregateFleetDataSchema).errors,
-    ).toHaveLength(0)
-  })
-})
 
 describe('getVehicleCount', () => {
   test('should return 0 for no vehicles', () => {
@@ -113,5 +105,29 @@ describe('getTotalPurchasePrice', () => {
 })
 
 describe('getAggregateData', () => {
-  test.todo('should handle all aggregate values')
+  test('should handle empty input', () => {
+    const data = getAggregateFleetData({})
+    const defaultData = {
+      totalPurchasePrice: null,
+      vehicleCount: 0,
+      vehicleCountByModelYear: {},
+      vehicleCountByPurchaseYear: {},
+    }
+    expect(data).toStrictEqual(defaultData)
+  })
+
+  test('should return a proper aggregateFleetData object', () => {
+    let data = getAggregateFleetData({})
+
+    expect(validate(data, aggregateFleetDataSchema).errors).toHaveLength(0)
+
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: { purchaseValue: 1234567 },
+      '03D84BKR262PCBP77': { purchaseDate: '2005-01-20T05:00:00.000Z' },
+      '1PPSGMFUGRXWTN0DE': { purchaseValue: 4133755 },
+      GRXWTN0DE3D84BKR2: { modelYear: 2019 },
+    }
+    data = getAggregateFleetData(vehicles)
+    expect(validate(data, aggregateFleetDataSchema).errors).toHaveLength(0)
+  })
 })
