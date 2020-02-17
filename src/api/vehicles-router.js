@@ -16,10 +16,5 @@ vehiclesRouter.route('/:id').get((req, res) => {
     })
   })
 })
-// .post((req, res) => res.send({ message: `created vehicle ${req.params.id}` }))
-// .put((req, res) => res.send({ message: `updated vehicle ${req.params.id}` }))
-// .delete((req, res) =>
-//   res.send({ message: `deleted vehicle ${req.params.id}` }),
-// )
 
 module.exports = vehiclesRouter
