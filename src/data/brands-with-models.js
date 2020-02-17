@@ -1,3 +1,4 @@
+// adapted from https://github.com/pelmered/fake-car/blob/master/src/CarData.php
 const BRANDS_WITH_MODELS = {
   Abarth: ['Fiat 595'],
   Acura: [
