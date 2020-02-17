@@ -4,8 +4,8 @@
   "description": "speedy fleet insurance claims management",
   "main": "src/api/index.js",
   "scripts": {
-    "start": "node ./src/api/index.js",
-    "dev": "nodemon ./src/api/index.js",
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
     "postinstall": "node ./src/utils/postinstall.js",
     "test": "jest",
     "test:coverage": "jest -- --coverage --coverageReporters='lcov'"
@@ -19,7 +19,6 @@
     "morgan": "^1.9.1",
     "object-keys": "^1.1.1",
     "path": "^0.12.7",
-    "pug": "^2.0.4",
     "randexp": "^0.5.3",
     "uuid": "^3.4.0"
   },
@@ -34,7 +33,6 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^25.1.0",
     "jsonschema": "^1.2.5",
-    "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
   }
 }
