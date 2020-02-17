@@ -64,7 +64,25 @@ describe('getVehicleCountByModelYear', () => {
 })
 
 describe('getVehicleCountByPurchaseYear', () => {
-  test.todo('should handle multiple purchase years')
+  test('should handle multiple purchase years', () => {
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: { purchaseDate: '1999-01-20T05:00:00.000Z' },
+      '03D84BKR262PCBP77': { purchaseDate: '2012-01-20T05:00:00.000Z' },
+      '1PPSGMFUGRXWTN0DE': { purchaseDate: '2005-01-20T05:00:00.000Z' },
+      GRXWTN0DE3D84BKR2: { purchaseDate: '2005-01-20T05:00:00.000Z' },
+      UJCZ7D75Y4WJ1DP3W: { purchaseDate: '2012-01-20T05:00:00.000Z' },
+      B17C23C6YR00UT9T0: { purchaseDate: '2012-01-20T05:00:00.000Z' },
+    }
+    const countByPurchaseYear = aggregator.getVehicleCountByPurchaseYear(
+      vehicles,
+    )
+
+    expect(countByPurchaseYear).toStrictEqual({
+      '1999': 1,
+      '2005': 2,
+      '2012': 3,
+    })
+  })
 })
 
 describe('getTotalPurchasePrice', () => {
