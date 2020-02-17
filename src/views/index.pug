@@ -3,3 +3,29 @@ html
     title= "Flash"
   body
     h1= message
+    .box
+      h3= "Vehicle Count"
+      h2= vehicleCount
+    .box
+      h3= "Total Purchase Price"
+      h2= totalPurchasePrice
+    .box
+      h3= "Count By Purchase Year"
+      table
+        tr
+          th Year
+          th Count
+        each purchaseYear, index in vehicleCountByPurchaseYear
+          tr
+            td= index
+            td= purchaseYear
+    .box
+      h3= "Count By Model Year"
+      table
+        tr
+          th Year
+          th Count
+        each modelYear, index in vehicleCountByModelYear
+          tr
+            td= index
+            td= modelYear
