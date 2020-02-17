@@ -1,4 +1,4 @@
-const { generateVehicle, vehicles } = require('./vehicle')
+const { generateVehicle, vehicles } = require('../models/vehicle')
 const FileIO = require('./file-io')
 
 const postInstall = () => {
