@@ -9,7 +9,7 @@ const vehicles = {}
 
 /* Design a data structure for a single car that
  *   - Has a unique id
- *   - Contains the properties
+ *   Contains the properties:
  *   - Year, make, model, purchase value, VIN, license plate state, and number
  *   - Contains the claim history
  *   - Claim history details varies by company [arbitrary objects]
