@@ -86,7 +86,20 @@ describe('getVehicleCountByPurchaseYear', () => {
 })
 
 describe('getTotalPurchasePrice', () => {
-  test.todo('should handle total purchase price')
+  test('should handle total purchase price', () => {
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: { purchaseValue: 1234567 },
+      '03D84BKR262PCBP77': { purchaseValue: 9876543 },
+      '1PPSGMFUGRXWTN0DE': { purchaseValue: 4133755 },
+      GRXWTN0DE3D84BKR2: { purchaseValue: 1234567 },
+      UJCZ7D75Y4WJ1DP3W: { purchaseValue: 9876543 },
+      B17C23C6YR00UT9T0: { purchaseValue: 4133755 },
+    }
+
+    const total = 30489730
+
+    expect(aggregator.getTotalPurchasePrice(vehicles)).toEqual(total)
+  })
 })
 
 describe('getAggregateData', () => {
