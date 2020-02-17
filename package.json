@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "postinstall": "node ./src/postinstall.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Stephen Koller",
   "license": "MIT",
@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1"
   }
 }
