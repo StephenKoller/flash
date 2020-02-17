@@ -2,11 +2,12 @@
   "name": "flash",
   "version": "1.0.0",
   "description": "speedy fleet insurance claims management",
-  "main": "src/api/ndex.js",
+  "main": "src/api/index.js",
   "scripts": {
     "start": "node ./src/api/index.js",
     "postinstall": "node ./src/utils/postinstall.js",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest -- --coverage --coverageReporters='lcov'"
   },
   "author": "Stephen Koller",
   "license": "MIT",
