@@ -1,5 +1,7 @@
 const uuid = require('uuid')
 const faker = require('faker')
+const sample = require('lodash/sample')
+const randexp = require('randexp').randexp
 
 const AT_FAULT = {
   EMPLOYEE: 0,
@@ -14,8 +16,12 @@ class ClaimsHistory {
         id: uuid.v4(),
         createdDate: new Date(),
         modifiedDate: new Date(),
-        incidentDate: new Date('01-15-2020'),
-        atFault: AT_FAULT.EMPLOYEE,
+        incidentDate: new Date(
+          randexp(
+            '(1[0-2]|[1-9])-(3[01]|[12][0-9]|[1-9])-(199|200|201)[0-9]{1}',
+          ),
+        ),
+        atFault: sample(AT_FAULT),
         employee: {
           id: uuid.v4(),
           firstName: faker.name.firstName(),
