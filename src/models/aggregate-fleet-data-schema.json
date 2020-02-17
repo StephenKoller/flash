@@ -1,0 +1,16 @@
+{
+  "id": "/AggregateFleetData",
+  "type": "object",
+  "properties": {
+    "vehicleCount": { "type": "integer" },
+    "vehicleCountByModelYear": { "type": "object" },
+    "vehicleCountByPurchaseYear": { "type": "object" },
+    "totalPurchasePrice": { "type": "integer" }
+  },
+  "required": [
+    "vehicleCount",
+    "vehicleCountByModelYear",
+    "vehicleCountByPurchaseYear",
+    "totalPurchasePrice"
+  ]
+}

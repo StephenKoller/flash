@@ -5,6 +5,16 @@ const {
   getVehicleCountByPurchaseYear,
   getTotalPurchasePrice,
 } = require('./aggregate-fleet-data')
+const aggregateFleetDataSchema = require('./aggregate-fleet-data-schema')
+var validate = require('jsonschema').validate
+
+describe('aggregate fleet data', () => {
+  test('should conform to JSONSchema', () => {
+    expect(
+      validate(aggregateFleetData, aggregateFleetDataSchema).errors,
+    ).toHaveLength(0)
+  })
+})
 
 describe('getVehicleCount', () => {
   test('should return 0 for no vehicles', () => {
