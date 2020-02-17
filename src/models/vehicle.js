@@ -1,5 +1,5 @@
 const uuid = require('uuid')
-const ClaimsHistory = require('../models/claims-history')
+const generateClaimHistory = require('../models/claims-history')
 const randexp = require('randexp').randexp
 const sample = require('lodash/sample')
 const getMakeAndModel = require('../data/brands-with-models')
@@ -37,7 +37,7 @@ const generateVehicle = () => {
     vin,
     licensePlateNumber: randexp('[A-HJ-NPR-Z0-9]{7}'),
     licensePlateState: sample(STATES),
-    claims: new ClaimsHistory(id).claims,
+    claims: generateClaimHistory(id),
   }
   return vehicles[vin]
 }

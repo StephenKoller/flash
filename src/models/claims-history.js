@@ -9,29 +9,23 @@ const AT_FAULT = {
   ACT_OF_GOD: 2,
 }
 
-class ClaimsHistory {
-  constructor(vehicleID) {
-    this.claims = [
-      {
-        id: uuid.v4(),
-        createdDate: new Date(),
-        modifiedDate: new Date(),
-        incidentDate: new Date(
-          randexp(
-            '(1[0-2]|[1-9])-(3[01]|[12][0-9]|[1-9])-(199|200|201)[0-9]{1}',
-          ),
-        ),
-        atFault: sample(AT_FAULT),
-        employee: {
-          id: uuid.v4(),
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-        },
-        vehicle: vehicleID,
-        details: {},
-      },
-    ]
-  }
-}
+const generateClaimHistory = vehicleID => [
+  {
+    id: uuid.v4(),
+    createdDate: new Date(),
+    modifiedDate: new Date(),
+    incidentDate: new Date(
+      randexp('(1[0-2]|[1-9])-(3[01]|[12][0-9]|[1-9])-(199|200|201)[0-9]{1}'),
+    ),
+    atFault: sample(AT_FAULT),
+    employee: {
+      id: uuid.v4(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+    },
+    vehicle: vehicleID,
+    details: {},
+  },
+]
 
-module.exports = ClaimsHistory
+module.exports = generateClaimHistory
