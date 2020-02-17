@@ -3,7 +3,7 @@ const ClaimsHistory = require('./claims-history')
 const randexp = require('randexp').randexp
 const sample = require('lodash/sample')
 const getMakeAndModel = require('./brands-with-models')
-const STATES = require('./states')
+const STATES = require('../data/states')
 
 const vehicles = {}
 
