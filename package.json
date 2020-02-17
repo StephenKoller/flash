@@ -4,15 +4,17 @@
   "description": "speedy fleet insurance claims management",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node ./src/api/index.js",
     "postinstall": "node ./src/postinstall.js",
     "test": "jest"
   },
   "author": "Stephen Koller",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
+    "morgan": "^1.9.1",
     "object-keys": "^1.1.1",
     "path": "^0.12.7",
     "randexp": "^0.5.3",
