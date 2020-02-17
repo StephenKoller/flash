@@ -2,10 +2,10 @@
   "name": "flash",
   "version": "1.0.0",
   "description": "speedy fleet insurance claims management",
-  "main": "src/index.js",
+  "main": "src/api/ndex.js",
   "scripts": {
     "start": "node ./src/api/index.js",
-    "postinstall": "node ./src/postinstall.js",
+    "postinstall": "node ./src/utils/postinstall.js",
     "test": "jest"
   },
   "author": "Stephen Koller",
