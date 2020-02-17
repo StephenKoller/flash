@@ -18,4 +18,10 @@ const vehicle = {
   claims: new ClaimsHistory(vehicleID),
 }
 
-module.exports = vehicle
+const vehicles = {
+  0: vehicle,
+  1: { ...vehicle, modelYear: 2019 },
+  2: { ...vehicle, modelYear: 2019 },
+}
+
+module.exports = [vehicles]

@@ -15,13 +15,13 @@ class FileIO {
   }
 
   static readJson(filePath, callback) {
-    fs.readFile(filePath, (err, fileData) => {
+    fs.readFile(path.join(__dirname, filePath), (err, fileData) => {
       if (err) {
         return callback && callback(err)
       }
       try {
         const object = JSON.parse(fileData)
-        return callback && callback(null, object)
+        return callback && callback(object)
       } catch (err) {
         return callback && callback(err)
       }
