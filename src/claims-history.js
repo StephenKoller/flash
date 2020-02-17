@@ -1,4 +1,5 @@
 const uuid = require('uuid')
+const faker = require('faker')
 
 const AT_FAULT = {
   EMPLOYEE: 0,
@@ -15,7 +16,11 @@ class ClaimsHistory {
         modifiedDate: new Date(),
         incidentDate: new Date('01-15-2020'),
         atFault: AT_FAULT.EMPLOYEE,
-        employee: { id: uuid.v4(), firstName: 'Stephen', lastName: 'Koller' },
+        employee: {
+          id: uuid.v4(),
+          firstName: faker.name.firstName(),
+          lastName: faker.name.lastName(),
+        },
         vehicle: vehicleID,
         details: {},
       },
