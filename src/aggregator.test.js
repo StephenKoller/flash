@@ -34,10 +34,43 @@ describe('getVehicleCount', () => {
   })
 })
 
-describe('getVehicleCountByModelYear', () => {})
+describe('getVehicleCountByModelYear', () => {
+  test('should handle a single model year', () => {
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: { modelYear: 2019 },
+    }
+    const vehicleCountByModelYear = aggregator.getVehicleCountByModelYear(
+      vehicles,
+    )
+    expect(vehicleCountByModelYear).toStrictEqual({ '2019': 1 })
+  })
+  test('should handle 3 model years', () => {
+    const vehicles = {
+      CN3YN2XNMNTALPSUB: { modelYear: 2019 },
+      '03D84BKR262PCBP77': { modelYear: 1989 },
+      '1PPSGMFUGRXWTN0DE': { modelYear: 2013 },
+      GRXWTN0DE3D84BKR2: { modelYear: 2013 },
+    }
+    const vehicleCountByModelYear = aggregator.getVehicleCountByModelYear(
+      vehicles,
+    )
 
-describe('getVehicleCountByPurchaseYear', () => {})
+    expect(vehicleCountByModelYear).toStrictEqual({
+      '1989': 1,
+      '2013': 2,
+      '2019': 1,
+    })
+  })
+})
 
-describe('getTotalPurchasePrice', () => {})
+describe('getVehicleCountByPurchaseYear', () => {
+  test.todo('should handle multiple purchase years')
+})
 
-describe('getAggregateData', () => {})
+describe('getTotalPurchasePrice', () => {
+  test.todo('should handle total purchase price')
+})
+
+describe('getAggregateData', () => {
+  test.todo('should handle all aggregate values')
+})
