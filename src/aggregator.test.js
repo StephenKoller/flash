@@ -21,6 +21,17 @@ describe('getVehicleCount', () => {
     }
     expect(aggregator.getVehicleCount(vehicles)).toBe(5)
   })
+
+  test('should return 0 for boolean, array, integer, string input types', () => {
+    let vehicles = true
+    expect(aggregator.getVehicleCount(vehicles)).toBe(0)
+    vehicles = []
+    expect(aggregator.getVehicleCount(vehicles)).toBe(0)
+    vehicles = 42
+    expect(aggregator.getVehicleCount(vehicles)).toBe(0)
+    vehicles = 'foobar'
+    expect(aggregator.getVehicleCount(vehicles)).toBe(0)
+  })
 })
 
 describe('getVehicleCountByModelYear', () => {})

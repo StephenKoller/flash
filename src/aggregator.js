@@ -3,8 +3,8 @@ const keys = require('object-keys')
 
 class Aggregator {
   static getVehicleCount(vehicles) {
-    this.vehicleCount = keys(vehicles).length
-    return this.vehicleCount
+    this.vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
+    return this.vehicleCount || 0
   }
 
   static getVehicleCountByModelYear(vehicles) {
