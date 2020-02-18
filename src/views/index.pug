@@ -1,31 +1,43 @@
 html
   head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     title= "Flash"
+    style
+      include style.css
   body
     h1= message
-    .box
-      h3= "Vehicle Count"
-      h2= vehicleCount
-    .box
-      h3= "Total Purchase Price"
-      h2= totalPurchasePrice
-    .box
-      h3= "Count By Purchase Year"
-      table
-        tr
-          th Year
-          th Count
-        each purchaseYear, index in vehicleCountByPurchaseYear
+    .container
+      .box
+        h3 Vehicle Count
+        h2= vehicleCount
+      .box
+        h3 Total Purchase Price
+        h2= totalPurchasePrice
+      .box
+        h3 Count By Purchase Year
+        table
           tr
-            td= index
-            td= purchaseYear
-    .box
-      h3= "Count By Model Year"
-      table
-        tr
-          th Year
-          th Count
-        each modelYear, index in vehicleCountByModelYear
+            th Year
+            th Count
+          each purchaseYear, index in vehicleCountByPurchaseYear
+            tr
+              td= index
+              td= purchaseYear
+      .box
+        h3 Count By Model Year
+        table
           tr
-            td= index
-            td= modelYear
+            th Year
+            th Count
+          each modelYear, index in vehicleCountByModelYear
+            tr
+              td= index
+              td= modelYear
+    .container
+      .box
+        h3 Find a Vehicle by VIN
+        form(method='POST' action='/search')
+          input(type='text', placeholder='VIN', name='vin')
+          input(type='submit')
+    include includes/results
