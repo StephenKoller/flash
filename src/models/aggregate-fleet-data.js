@@ -8,12 +8,6 @@ const keys = require('object-keys')
  *
  * see aggregate-fleet-data-schema.json for shape
  */
-// aggregateFleetData = {
-//   vehicleCount: 0,
-//   vehicleCountByModelYear: {},
-//   vehicleCountByPurchaseYear: {},
-//   totalPurchasePrice: 0,
-// }
 
 const getVehicleCount = vehicles => {
   const vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
