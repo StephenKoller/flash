@@ -12,7 +12,7 @@
           tr
             td= index.charAt(0).toUpperCase() + index.slice(1)
             td= field
-    else
+    else if results
       h2 All Vehicles
 
       table
@@ -23,6 +23,8 @@
           th Model Year
           th Value
           th Purchase Date
+          th License Plate Number
+          th License Plate State
 
         each field in results
           tr
@@ -32,3 +34,5 @@
             td= field.modelYear
             td= field.purchaseValue
             td= new Date(field.purchaseDate).toDateString()
+            td= field.licensePlateNumber
+            td= field.licensePlateState
