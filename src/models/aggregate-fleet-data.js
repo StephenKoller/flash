@@ -1,5 +1,4 @@
 const countBy = require('lodash/countBy')
-const keys = require('object-keys')
 
 /* Design a data structure that contains aggregated metrics for the fleet:
  * - Total count
@@ -10,7 +9,8 @@ const keys = require('object-keys')
  */
 
 const getVehicleCount = vehicles => {
-  const vehicleCount = typeof vehicles === 'object' && keys(vehicles).length
+  const vehicleCount =
+    typeof vehicles === 'object' && Object.keys(vehicles).length
   return vehicleCount || 0
 }
 
@@ -25,15 +25,15 @@ const getVehicleCountByPurchaseYear = vehicles => {
 }
 
 const getTotalPurchasePrice = vehicles => {
-  if (!vehicles || !keys(vehicles).length) return null
+  if (!vehicles || !Object.keys(vehicles).length) return null
 
-  const hasPurchaseValue = keys(vehicles)
+  const hasPurchaseValue = Object.keys(vehicles)
     .map(i => vehicles[i])
     .every(v => v.hasOwnProperty('purchaseValue'))
 
   if (!hasPurchaseValue) return null
 
-  return keys(vehicles)
+  return Object.keys(vehicles)
     .map(i => vehicles[i])
     .map(v => v.purchaseValue)
     .reduce((acc, cur) => acc + cur)
