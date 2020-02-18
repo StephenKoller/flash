@@ -60,6 +60,31 @@ My very un-scientific results show a roughly O(n) lookup time:
 > How would you design a data structure/method to provide sorted lists of car data
 > structures by property field?
 
+A memoized function returning the results of a hand-rolled method using Array.sort should be sufficient.
+V8 uses the Tim Sort algorithm to power Array.sort, which is pretty impressive - adaptive, stable, O(n) memory and O(n log n) time in the worst case.
+
+#### Pseudo-code
+
+```
+memoizedSortByProperty (arrayOfCars, sortProperty)
+  if(memoized result) return memoized result
+
+  sortedArrayByProperty = arrayOfCars.sort((a, b) => {
+    if a[sortProperty] < b[sortProperty] {
+      return -1
+    }
+    if a[sortProperty] > b[sortProperty] {
+      return 1
+    }
+    return 0
+  })
+
+  memoized result = sortedArrayByProperty
+
+  return sortedArrayByProperty
+end
+```
+
 ## Personal Goals
 
 ### keep it `m i n i m a l`
