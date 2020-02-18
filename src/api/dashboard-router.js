@@ -8,15 +8,18 @@ const formatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 })
 
+const formatList = (listData, response) => ({
+  ...listData,
+  totalPurchasePrice: formatter.format(
+    listData.totalPurchasePrice.toFixed(2) / 100,
+  ),
+  results: response,
+})
+
 dashboardRouter.route('/').get((req, res) => {
   readJson('../data/vehicles.json', response => {
     const data = getAggregateFleetData(response)
-    const formattedData = {
-      ...data,
-      totalPurchasePrice: formatter.format(
-        data.totalPurchasePrice.toFixed(2) / 100,
-      ),
-    }
+    const formattedData = formatList(data, response)
     res.render('index', formattedData)
   })
 })
@@ -26,17 +29,9 @@ dashboardRouter.route('/search').post((req, res) => {
     const data = getAggregateFleetData(response)
     const results = response[req.body.vin]
 
-    const formattedData = {
-      ...data,
-      totalPurchasePrice: formatter.format(
-        data.totalPurchasePrice.toFixed(2) / 100,
-      ),
-    }
+    const formattedData = formatList(data, response)
 
     if (results) {
-      console.log(results.purchaseValue)
-      console.log(results.purchaseValue.toFixed(2) / 100)
-
       formattedData.searchResults = {
         ...results,
         createdDate: new Date(results.createdDate).toDateString(),
